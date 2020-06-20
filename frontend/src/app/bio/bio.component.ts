@@ -33,16 +33,7 @@ export class BioComponent implements AfterViewInit {
     this._getData();
   }
 
-  getUploadUrl(bioId: number) {
-    return '/v1/bio/uploadProfilePic/' + bioId;
-  }
-
-  onFileComplete(event: any, bio: any) {
-    console.log('event==>', event);
-    if (event) {
-      bio.profilePic = event.path;
-    }
-  }
+  
 
   get isMobile(): boolean {
     return this.media.isActive('xs') || this.media.isActive('sm');

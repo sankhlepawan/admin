@@ -1,6 +1,5 @@
 .container {
   text-align: center;
-  padding: 1rem;
 }
 
 .row {
@@ -13,7 +12,7 @@
 }
 
 .example-viewport {
-  height: 70vh;
+  
 
   // Bonus points
   &::-webkit-scrollbar {
@@ -33,12 +32,6 @@
   flex: 1 1 auto;
 }
 
-app-file-upload {
-  position: absolute;
-  top: 75px;
-  right: 65px;
-}
-
 .example-item {
   height: 50px;
 }
@@ -47,12 +40,8 @@ app-file-upload {
   height: 35px !important;
 }
 
-.detail-span {
-  text-overflow: ellipsis;
-  width: 120px;
-  /* width: 250px; */
-  text-align: start;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.mat-toolbar {
+  margin-bottom: 5px;
 }
+
+

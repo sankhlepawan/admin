@@ -1,62 +1,31 @@
-<div class="container">
-  <mat-toolbar color="primary">
+<div class="container" [ngStyle]="{'padding': isMobile ? '0rem;' : '1rem;'}">
+  <!-- <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span>BIOS</span>
       <span class="example-spacer"></span>
       <a mat-icon-button routerLink="add-bio">
         <mat-icon aria-hidden="false" aria-label="Example heart icon">add_box</mat-icon>
       </a>
-      <!-- <button mat-mini-fab color="accent" aria-label="Example icon button with a vertical three dot icon">
-            <mat-icon aria-hidden="false" aria-label="Example heart icon">add</mat-icon>
-        </button> -->
     </mat-toolbar-row>
-  </mat-toolbar>
-  <div>
-    <cdk-virtual-scroll-viewport class="example-viewport" itemSize="100">
-      <mat-grid-list cols="4" rowHeight="100px" gutterSize="5px">
+  </mat-toolbar> -->
+  
+    <cdk-virtual-scroll-viewport [ngStyle]="{'height': isMobile ? '100vh;' : '80vh;'}" class="example-viewport" itemSize="100">
+       <mat-grid-list cols="4" rowHeight="100px" gutterSize="5px" *ngIf="!isMobile">
         <mat-grid-tile *cdkVirtualFor="let bio of ds" [colspan]="isMobile ? 4 : 1" [rowspan]="4">
-          <mat-card class="example-card">
-            <img
-              height="184"
-              mat-card-image
-              src="{{ bio.profilePic || 'https://via.placeholder.com/150' }}"
-              alt="Photo of a User"
-            />
-            <!-- <button class="upload-btn" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
-                    <mat-icon>file_upload</mat-icon>
-                </button> -->
-            <app-file-upload
-              *ngIf="!bio.profilePic"
-              (complete)="onFileComplete($event, bio)"
-              [target]="getUploadUrl(bio.id)"
-            ></app-file-upload>
-            <mat-card-content>
-              <mat-list>
-                <mat-list-item>Name: {{ bio.name }}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item
-                  >Place:
-                  <span title="{{ bio.state }}" class="detail-span">{{ bio.state | uppercase }}</span></mat-list-item
-                >
-                <mat-divider></mat-divider>
-                <mat-list-item
-                  >Qualification:
-                  <span title="{{ bio.qualification }}" class="detail-span">{{
-                    bio.qualification | uppercase
-                  }}</span></mat-list-item
-                >
-                <mat-divider></mat-divider>
-                <mat-list-item>Salary: {{ bio.salary }}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Contact: {{ bio.primaryContactNumber }}</mat-list-item>
-                <button color="primary" mat-button>KNOW MORE</button>
-              </mat-list>
-            </mat-card-content>
-          </mat-card>
+          <app-user-profile [bio]="bio"></app-user-profile>
         </mat-grid-tile>
       </mat-grid-list>
+
+      <div *ngIf="isMobile">
+          <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+              <div fxFlex fxFlexFill *cdkVirtualFor="let bio of ds">
+                <app-user-profile [bio]="bio"></app-user-profile>
+              </div>
+          </div>
+      </div>
+      
     </cdk-virtual-scroll-viewport>
-  </div>
+ 
 
   <!-- <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate"></mat-progress-bar> -->
 

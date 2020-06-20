@@ -1,0 +1,17 @@
+.detail-span {
+    text-overflow: ellipsis;
+    width: 120px;
+    /* width: 250px; */
+    text-align: start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+  app-file-upload {
+    position: absolute;
+    top: 17%;
+    left: 0%;
+    width: 100%;
+    text-align: center;
+  }
