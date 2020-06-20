@@ -1,4 +1,4 @@
-<div class="container" [ngStyle]="{'padding': isMobile ? '0rem;' : '1rem;'}">
+<div class="container" [ngStyle]="{'padding': isMobile ? '0.5rem;' : '1rem;'}">
   <!-- <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span>BIOS</span>
@@ -25,7 +25,12 @@
       </div>
       
     </cdk-virtual-scroll-viewport>
- 
+    <div class="add-bio-d">
+      <a style="margin-right : 14px;" mat-fab color="warn"  routerLink="add-bio">
+        <mat-icon aria-hidden="false" aria-label="Example heart icon">add</mat-icon>
+      </a>
+    </div>
+    
 
   <!-- <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate"></mat-progress-bar> -->
 

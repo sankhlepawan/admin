@@ -1,10 +1,10 @@
 <div class="container">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <a mat-icon-button routerLink="/collection">
+      <a mat-icon-button routerLink="/bio">
         <mat-icon aria-hidden="false" aria-label="Example heart icon">arrow_back</mat-icon>
       </a>
-      <span>Create Bio</span>
+      <!-- <span>ADD</span> -->
       <span class="example-spacer"></span>
       <button mat-button routerLink="/bio">Cancel</button>
       <button mat-button [disabled]="addBioForm.invalid || isLoading" (click)="onCollectionAdd(addBioForm.value)">
