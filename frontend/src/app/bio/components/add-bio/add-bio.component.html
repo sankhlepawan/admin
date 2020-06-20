@@ -1,0 +1,183 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <a mat-icon-button routerLink="/collection">
+        <mat-icon aria-hidden="false" aria-label="Example heart icon">arrow_back</mat-icon>
+      </a>
+      <span>Create Bio</span>
+      <span class="example-spacer"></span>
+      <button mat-button routerLink="/bio">Cancel</button>
+      <button mat-button [disabled]="addBioForm.invalid || isLoading" (click)="onCollectionAdd(addBioForm.value)">
+        Add
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="main-div">
+    <app-loader [isLoading]="isLoading" size="1"></app-loader>
+    <form class="example-form" [formGroup]="addBioForm">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label> Full Name </mat-label>
+          <input formControlName="name" name="name" matInput placeholder="Full Name" />
+          <app-validation-error [fieldVal]="name"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label> Date Of Birth </mat-label>
+          <input formControlName="dob" name="dob" matInput [matDatepicker]="picker" placeholder="Date of Birth" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <app-validation-error [fieldVal]="dob"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Birth Time</mat-label>
+          <input formControlName="birthTime" matInput placeholder="##.##" />
+          <app-validation-error [fieldVal]="birthTime"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label> Birth Place </mat-label>
+          <input formControlName="birthPlace" name="birthPlace" matInput placeholder="Birth Place" />
+          <app-validation-error [fieldVal]="birthPlace"></app-validation-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Height</mat-label>
+          <input formControlName="height" matInput placeholder="#.#" />
+          <app-validation-error [fieldVal]="height"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Weight</mat-label>
+          <input formControlName="weight" matInput placeholder="##" />
+          <app-validation-error [fieldVal]="weight"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Qualification</mat-label>
+          <input formControlName="qualification" matInput placeholder="Qualification" />
+          <app-validation-error [fieldVal]="qualification"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Occupation</mat-label>
+          <input formControlName="occupation" matInput placeholder="Occupation" />
+          <app-validation-error [fieldVal]="occupation"></app-validation-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+        <mat-form-field fxFlex="25%" fxFlexFill>
+          <mat-label>Complextion</mat-label>
+          <mat-select name="complextion" formControlName="complextion">
+            <mat-option *ngFor="let type of complextionTypes" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+          <app-validation-error [fieldVal]="complextion"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Salary</mat-label>
+          <input formControlName="salary" matInput placeholder="Salary" />
+          <app-validation-error [fieldVal]="salary" [message]="'Salary in digits only.'"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Work Location</mat-label>
+          <input formControlName="currentWorkLocation" matInput placeholder="Work Location" />
+          <app-validation-error [fieldVal]="currentWorkLocation"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Mother Name</mat-label>
+          <input formControlName="motherName" matInput placeholder="Mother Name" />
+          <app-validation-error [fieldVal]="motherName"></app-validation-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Father Name</mat-label>
+          <input formControlName="fatherName" matInput placeholder="Father Name" />
+          <app-validation-error [fieldVal]="fatherName"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Father Occupation</mat-label>
+          <input formControlName="fatherOccupation" matInput placeholder="Father Occupation" />
+          <app-validation-error [fieldVal]="fatherOccupation"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Mother Occupation</mat-label>
+          <input formControlName="motherOccupation" matInput placeholder="Mother Occupation" />
+          <app-validation-error [fieldVal]="motherOccupation"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Gotra</mat-label>
+          <input formControlName="gotra" matInput placeholder="Gotra" />
+          <app-validation-error [fieldVal]="gotra"></app-validation-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>country</mat-label>
+          <input formControlName="country" matInput placeholder="Country" />
+          <app-validation-error [fieldVal]="country"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>state</mat-label>
+          <input formControlName="state" matInput placeholder="State" />
+          <app-validation-error [fieldVal]="state"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>City</mat-label>
+          <input formControlName="city" matInput placeholder="City" />
+          <app-validation-error [fieldVal]="city"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Full Address</mat-label>
+          <input formControlName="fullAddress" matInput placeholder="Address" />
+          <app-validation-error [fieldVal]="fullAddress"></app-validation-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Primary Contact Number</mat-label>
+          <input formControlName="primaryContactNumber" matInput placeholder="Primary Contact Number" />
+          <app-validation-error [fieldVal]="primaryContactNumber"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Secondary Contact Number</mat-label>
+          <input formControlName="secondaryContactNumber" matInput placeholder="Secondary Contact Number" />
+          <app-validation-error [fieldVal]="secondaryContactNumber"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Siblings</mat-label>
+          <input formControlName="siblings" matInput placeholder="Siblings" />
+          <app-validation-error [fieldVal]="siblings"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="25%" fxFlexFill>
+          <mat-label>Gender</mat-label>
+          <mat-select name="gender" formControlName="gender">
+            <mat-option *ngFor="let g of genderTypes" [value]="g">
+              {{ g }}
+            </mat-option>
+          </mat-select>
+          <app-validation-error [fieldVal]="gender"></app-validation-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>

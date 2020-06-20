@@ -1,0 +1,58 @@
+.container {
+  text-align: center;
+  padding: 1rem;
+}
+
+.row {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+.example-viewport {
+  height: 70vh;
+
+  // Bonus points
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2196f347;
+  }
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+app-file-upload {
+  position: absolute;
+  top: 75px;
+  right: 65px;
+}
+
+.example-item {
+  height: 50px;
+}
+
+.mat-list-item {
+  height: 35px !important;
+}
+
+.detail-span {
+  text-overflow: ellipsis;
+  width: 120px;
+  /* width: 250px; */
+  text-align: start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

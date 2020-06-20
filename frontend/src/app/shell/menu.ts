@@ -1,0 +1,8 @@
+export const MENU = [
+  { name: 'Home', path: '/home' },
+  { name: 'Order', path: '/order' },
+  { name: 'Product', path: '/product' },
+  { name: 'Users', path: '/user' },
+  { name: 'Collection', path: '/collection' },
+  { name: 'Bio', path: '/bio' },
+];
