@@ -1,10 +1,13 @@
 <mat-card class="example-card">
-    <img
-      height="184"
-      mat-card-image
-      src="{{ bio.profilePic || 'https://via.placeholder.com/150' }}"
-      alt="Photo of a User"
-    />
+   
+        <img
+        mat-card-image
+        height="180"
+        src="{{ bio.profilePic || 'https://via.placeholder.com/150' }}"
+        alt="Photo of a User"
+      />
+    
+    
     <!-- <button class="upload-btn" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
             <mat-icon>file_upload</mat-icon>
         </button> -->
@@ -32,7 +35,7 @@
         <mat-list-item>Salary: {{ bio.salary }}</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>Contact: {{ bio.primaryContactNumber }}</mat-list-item>
-        <button color="primary" mat-button>KNOW MORE</button>
+        <!-- <button color="primary" mat-button>KNOW MORE</button> -->
       </mat-list>
     </mat-card-content>
   </mat-card>

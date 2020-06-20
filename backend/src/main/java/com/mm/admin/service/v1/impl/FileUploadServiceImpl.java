@@ -63,7 +63,7 @@ public class FileUploadServiceImpl implements IFileUploadService{
 
             // Copy file to the target location (Replacing existing file with the same name)
             Path targetLocation = this.fileStorageLocation.resolve(newName);
-            fileupload.setPath("public/" + targetLocation.getFileName());
+            fileupload.setPath("public/img/" + targetLocation.getFileName());
             fileupload.setSize(file.getSize());
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
             

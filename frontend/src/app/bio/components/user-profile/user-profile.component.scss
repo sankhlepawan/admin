@@ -1,6 +1,6 @@
 .detail-span {
     text-overflow: ellipsis;
-    width: 194px;
+    width: 130px;
     /* width: 250px; */
     text-align: start;
     white-space: nowrap;
@@ -8,9 +8,14 @@
     text-overflow: ellipsis;
 }
 
+.mat-list-item {
+  height: 35px !important;
+  font-size: 17px;
+}
+
   app-file-upload {
     position: absolute;
-    top: 17%;
+    top: 28%;
     left: 0%;
     width: 100%;
     text-align: center;

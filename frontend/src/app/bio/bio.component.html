@@ -10,8 +10,8 @@
   </mat-toolbar> -->
   
     <cdk-virtual-scroll-viewport [ngStyle]="{'height': isMobile ? '100vh;' : '80vh;'}" class="example-viewport" itemSize="100">
-       <mat-grid-list cols="4" rowHeight="100px" gutterSize="5px" *ngIf="!isMobile">
-        <mat-grid-tile *cdkVirtualFor="let bio of ds" [colspan]="isMobile ? 4 : 1" [rowspan]="4">
+       <mat-grid-list cols="4" rowHeight="200px" gutterSize="5px" *ngIf="!isMobile">
+        <mat-grid-tile *cdkVirtualFor="let bio of ds" [colspan]="isMobile ? 4 : 1" [rowspan]="2">
           <app-user-profile [bio]="bio"></app-user-profile>
         </mat-grid-tile>
       </mat-grid-list>
