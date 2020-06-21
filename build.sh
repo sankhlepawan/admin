@@ -4,6 +4,7 @@ BUILD_PATH="/home/ubuntu/admin"
 UI_PATH="${BUILD_PATH}/frontend"
 JAVA_PATH="${BUILD_PATH}/backend"
 PUBLIC_PATH="/home/ubuntu/public"
+USER_HOME="/home/ubuntu"
 
 deploy_ui() {
  cd ${UI_PATH}
@@ -15,7 +16,7 @@ deploy_ui() {
 deploy_java() {
   cd "${JAVA_PATH}"
   mvn clean package
-  nohup java -Dspring.profiles.active=prod -jar target/whatsappbot-0.0.1-SNAPSHOT.jar >> server.log &
+  nohup java -Dspring.profiles.active=prod -jar target/whatsappbot-0.0.1-SNAPSHOT.jar >> "${USER_HOME}/server.log" &
 }
 
 deploy_build() {
