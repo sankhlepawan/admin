@@ -6,6 +6,7 @@ import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { ChangeDetectionStrategy, Component, ViewChild, AfterViewInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'app-bio',
   templateUrl: './bio.component.html',
@@ -33,11 +34,10 @@ export class BioComponent implements AfterViewInit {
     this._getData();
   }
 
-  
-
   get isMobile(): boolean {
     return this.media.isActive('xs') || this.media.isActive('sm');
   }
+
 }
 
 export class MyDataSource extends DataSource<BioModel | undefined> {
@@ -59,7 +59,6 @@ export class MyDataSource extends DataSource<BioModel | undefined> {
     this._subscription.add(
       collectionViewer.viewChange.subscribe((range) => {
         const currentPage = this._getPageForIndex(range.end);
-        console.log(currentPage, this.lastPage);
         if (currentPage > this.lastPage) {
           this.lastPage = currentPage;
           this._fetchFactPage();
@@ -72,9 +71,7 @@ export class MyDataSource extends DataSource<BioModel | undefined> {
   private _fetchFactPage(): void {
     //for (let i = 0; i < 2; ++i) {
     this._service.search('id', 'desc', this.lastPage, this.pageSize, '').subscribe((res: AllBioApi) => {
-      console.log(this._cachedData);
       this._cachedData = this._cachedData.concat(res.items);
-      console.log(this._cachedData);
       this._dataStream.next(this._cachedData);
     });
 

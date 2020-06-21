@@ -4,6 +4,15 @@ export enum ComplexionType {
   WHITISH = 'WHITISH',
 }
 
+export enum MaritalStatusType {
+  SINGLE = 'SINGLE',
+  DIVORCED = 'DIVORCED',
+}
+
+export enum CastType {
+  DHOBI = 'DHOBI'
+}
+
 export enum EatingHabitsType {
   FAIR = 'VEG',
   NON_VEG = 'NON_VEG',
@@ -45,6 +54,8 @@ export interface BioModel {
   secondaryContactNumber: string;
   siblings: string;
   photo: [string];
+  maritalStatus: string
+  cast: string
 }
 
 export interface AllBioApi {

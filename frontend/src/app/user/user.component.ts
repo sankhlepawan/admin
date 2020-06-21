@@ -47,7 +47,7 @@ export class UserComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   isShowFilter = false;
 
-  constructor(private _service: UserService, private media: MediaObserver, private router: Router) {}
+  constructor(private _service: UserService, private media: MediaObserver,private router: Router) {}
 
   _getData() {
     merge(this.sort.sortChange, this.paginator.page)

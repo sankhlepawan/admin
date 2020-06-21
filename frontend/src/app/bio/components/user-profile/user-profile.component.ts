@@ -1,4 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MediaObserver } from '@angular/flex-layout';
+import { Router } from '@angular/router';
+import { BioModel } from '../../bio.types';
+import { BioService } from '../../bio.service';
+
 
 @Component({
     selector: 'app-user-profile',
@@ -6,7 +11,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-    constructor() { }
+    constructor(private media: MediaObserver, private router: Router,private _service: BioService) { }
 
     ngOnInit(): void { }
 
@@ -22,4 +27,13 @@ export class UserProfileComponent implements OnInit {
             bio.profilePic = event.path;
         }
     }
+
+    get isMobile(): boolean {
+        return this.media.isActive('xs') || this.media.isActive('sm');
+    }
+
+    onBioEdit(bio: BioModel) {
+        this._service.setSelectedBio(bio);
+        this.router.navigate(['bio/add-bio', { isEdit: true }], { skipLocationChange: true });
+      }
 }

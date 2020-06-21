@@ -2,20 +2,20 @@
    
         <img
         mat-card-image
-        height="180"
+        height="{{isMobile ? 300  : 180 }}"
         src="{{ bio.profilePic || 'https://via.placeholder.com/150' }}"
         alt="Photo of a User"
       />
-    
-    
-    <!-- <button class="upload-btn" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
-            <mat-icon>file_upload</mat-icon>
-        </button> -->
     <app-file-upload
-      *ngIf="!bio.profilePic"
       (complete)="onFileComplete($event, bio)"
       [target]="getUploadUrl(bio.id)"
     ></app-file-upload>
+    <div class="u-edit-btn">
+      <button mat-icon-button color="warn" (click)="onBioEdit(bio)">
+        <mat-icon>edit</mat-icon>
+      </button> 
+    </div>
+    
     <mat-card-content>
       <mat-list>
         <mat-list-item>Name: {{ bio.name }}</mat-list-item>

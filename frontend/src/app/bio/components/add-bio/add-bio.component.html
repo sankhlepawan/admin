@@ -7,7 +7,7 @@
       <!-- <span>ADD</span> -->
       <span class="example-spacer"></span>
       <button mat-button routerLink="/bio">Cancel</button>
-      <button mat-button [disabled]="addBioForm.invalid || isLoading" (click)="onCollectionAdd(addBioForm.value)">
+      <button mat-button [disabled]="addBioForm.invalid || isLoading" (click)="onBioAdd(addBioForm.value)">
         Add
       </button>
     </mat-toolbar-row>
@@ -99,6 +99,13 @@
       </div>
 
       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+        
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Mother Occupation</mat-label>
+          <input formControlName="motherOccupation" matInput placeholder="Mother Occupation" />
+          <app-validation-error [fieldVal]="motherOccupation"></app-validation-error>
+        </mat-form-field>
+
         <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
           <mat-label>Father Name</mat-label>
           <input formControlName="fatherName" matInput placeholder="Father Name" />
@@ -111,13 +118,7 @@
           <app-validation-error [fieldVal]="fatherOccupation"></app-validation-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
-          <mat-label>Mother Occupation</mat-label>
-          <input formControlName="motherOccupation" matInput placeholder="Mother Occupation" />
-          <app-validation-error [fieldVal]="motherOccupation"></app-validation-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+       <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
           <mat-label>Gotra</mat-label>
           <input formControlName="gotra" matInput placeholder="Gotra" />
           <app-validation-error [fieldVal]="gotra"></app-validation-error>
@@ -178,6 +179,41 @@
           <app-validation-error [fieldVal]="gender"></app-validation-error>
         </mat-form-field>
       </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+        
+        <mat-form-field fxFlex="25%" fxFlexFill>
+          <mat-label>Marital Status</mat-label>
+          <mat-select name="maritalStatus" formControlName="maritalStatus">
+            <mat-option *ngFor="let g of maritalStatusType" [value]="g">
+              {{ g }}
+            </mat-option>
+          </mat-select>
+          <app-validation-error [fieldVal]="maritalStatus"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="25%" fxFlexFill>
+          <mat-label>Eating Habits</mat-label>
+          <mat-select name="eatingHabits" formControlName="eatingHabits">
+            <mat-option *ngFor="let g of eatingHabitsType" [value]="g">
+              {{ g }}
+            </mat-option>
+          </mat-select>
+          <app-validation-error [fieldVal]="eatingHabits"></app-validation-error>
+        </mat-form-field>
+
+        <div fxFlex="25%" style="line-height: 5;">
+          <mat-checkbox class="example-margin" formControlName="working" name="working"
+            >Working</mat-checkbox>
+        </div>
+
+        <div fxFlex="25%" style="line-height: 5;">
+          <mat-checkbox class="example-margin" formControlName="petlover" name="petlover"
+            >Pet Lover</mat-checkbox>
+        </div>
+
+      </div>
+
     </form>
   </div>
 </div>

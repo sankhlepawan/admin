@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { BioModel, ComplexionType, GenderType } from '../../bio.types';
+import { BioModel, ComplexionType, GenderType, MaritalStatusType, EatingHabitsType,CastType } from '../../bio.types';
 import { BioService } from '../../bio.service';
 import { numberPattern, numberFloatPattern } from '@shared/constants';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-bio',
@@ -10,14 +11,20 @@ import { numberPattern, numberFloatPattern } from '@shared/constants';
   styleUrls: ['./add-bio.component.scss'],
 })
 export class AddBioComponent implements OnInit {
-  constructor(private fb: FormBuilder, private _service: BioService) {
-    this._createForm();
-    this.itemDetailsType = [];
-    this.itemDetailsType[0] = [];
-    this.selectedItemDetails = [];
+  constructor(private fb: FormBuilder, private _service: BioService,private route: ActivatedRoute) {
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let isEdit = this.route.snapshot.paramMap.get('isEdit');
+    console.log(this._service);
+    let bio = this._service.getSelectedBio();
+
+    if (isEdit) {
+      this._createForm(bio);
+    } else {
+      this._createForm(undefined);
+    }
+  }
 
   addBioForm: FormGroup;
   isLoading = false;
@@ -29,42 +36,49 @@ export class AddBioComponent implements OnInit {
   selectedItemDetails: string[];
   complextionTypes: any = Object.keys(ComplexionType);
   genderTypes: any = Object.keys(GenderType);
+  maritalStatusType: any = Object.keys(MaritalStatusType);
+  eatingHabitsType: any = Object.keys(EatingHabitsType);
 
-  _createForm() {
-    console.log(this.complextionTypes);
+  _createForm(bio: BioModel) {
     this.addBioForm = this.fb.group({
-      name: ['', { validators: [Validators.required] }],
-      gender: ['', { validators: [Validators.required] }],
-      dob: ['', { validators: [Validators.required] }],
-      birthPlace: ['', { validators: [Validators.required] }],
-      complextion: ['', { validators: [Validators.required] }],
-      height: [undefined, { validators: [Validators.required, Validators.pattern(numberFloatPattern)] }],
-      weight: [undefined, { validators: [Validators.pattern(numberPattern)] }],
-      qualification: ['', { validators: [Validators.required] }],
-      occupation: ['', { validators: [Validators.required] }],
-      birthTime: ['', { validators: [Validators.required] }],
-      salary: ['', { validators: [Validators.pattern(numberPattern)] }],
-      currentWorkLocation: ['', { validators: [Validators.required] }],
-      motherName: ['', { validators: [Validators.required] }],
-      fatherName: ['', { validators: [Validators.required] }],
-      fatherOccupation: ['', { validators: [Validators.required] }],
-      motherOccupation: ['', { validators: [Validators.required] }],
-      gotra: ['', { validators: [Validators.required] }],
-      city: ['', { validators: [Validators.required] }],
-      country: ['', { validators: [Validators.required] }],
-      state: ['', { validators: [Validators.required] }],
-      fullAddress: ['', { validators: [Validators.required] }],
-      primaryContactNumber: ['', { validators: [Validators.required, Validators.minLength(10)] }],
-      secondaryContactNumber: ['', { validators: [Validators.required, Validators.minLength(10)] }],
-      siblings: ['', { validators: [Validators.required] }],
-      working: [false, { validators: [Validators.required] }],
-      petlover: [false, { validators: [Validators.required] }],
-      eatingHabits: ['BOTH', { validators: [Validators.required] }],
+      name: [(bio && bio.name) || '', { validators: [Validators.required] }],
+      gender: [ (bio && bio.gender) || '', { validators: [Validators.required] }],
+      dob: [ (bio && bio.dob) || '', { validators: [Validators.required] }],
+      birthPlace: [ (bio && bio.birthPlace), { validators: [Validators.required] }],
+      complextion: [ (bio && bio.complextion), { validators: [Validators.required] }],
+      height: [(bio && bio.height) || 0, { validators: [Validators.required, Validators.pattern(numberFloatPattern)] }],
+      weight: [(bio && bio.weight) | 0, { validators: [Validators.pattern(numberPattern)] }],
+      qualification: [(bio && bio.qualification) || '', { validators: [Validators.required] }],
+      occupation: [ (bio && bio.occupation) || '', { validators: [Validators.required] }],
+      birthTime: [ (bio && bio.birthTime) || '', { validators: [Validators.required] }],
+      salary: [ (bio && bio.salary) || 0, { validators: [] }],
+      currentWorkLocation: [ (bio && bio.currentWorkLocation)||'', { validators: [Validators.required] }],
+      motherName: [ (bio && bio.motherName) ||'', { validators: [Validators.required] }],
+      fatherName: [ (bio && bio.fatherName)||'', { validators: [Validators.required] }],
+      fatherOccupation: [ (bio && bio.fatherOccupation) ||'', { validators: [Validators.required] }],
+      motherOccupation: [  (bio && bio.motherOccupation) || '', { validators: [Validators.required] }],
+      gotra: [ (bio && bio.gotra) || '', { validators: [Validators.required] }],
+      city: [ (bio && bio.city) || '', { validators: [Validators.required] }],
+      country: [ (bio && bio.country) || 'India', { validators: [Validators.required] }],
+      state: [(bio && bio.state) || '', { validators: [Validators.required] }],
+      fullAddress: [ (bio && bio.fullAddress) || '', { validators: [Validators.required] }],
+      primaryContactNumber: [ (bio && bio.primaryContactNumber) || '', { validators: [Validators.required, Validators.minLength(10)] }],
+      secondaryContactNumber: [(bio && bio.secondaryContactNumber) ||'', { validators: [Validators.required, Validators.minLength(10)] }],
+      siblings: [(bio && bio.siblings) ||'', { validators: [Validators.required] }],
+      working: [ (bio && bio.working) || false, { validators: [Validators.required] }],
+      petlover: [ (bio && bio.petlover) || false, { validators: [Validators.required] }],
+      eatingHabits: [ (bio && bio.eatingHabits) || 'BOTH', { validators: [Validators.required] }],
+      maritalStatus : [(bio && bio.maritalStatus) || 'SINGLE', { validators: [Validators.required] }],
+      cast : [ (bio && bio.cast) || CastType.DHOBI, { validators: [] }],
     });
   }
 
   get name() {
     return this.addBioForm.get('birthPlace');
+  }
+
+  get maritalStatus() {
+    return this.addBioForm.get('maritalStatus');
   }
 
   get gender() {
@@ -167,14 +181,13 @@ export class AddBioComponent implements OnInit {
     return this.addBioForm.get('primaryContactNumber');
   }
 
-  onCollectionAdd(values: BioModel) {
+  onBioAdd(values: BioModel) {
     this.isLoading = true;
     console.log(JSON.stringify(values));
     // values.testMode = TestModeType.MANUAL;
     this._service.addBio(values).subscribe((res) => {
       this.isLoading = false;
       this.addBioForm.markAsPristine();
-      this._createForm();
     });
   }
 }

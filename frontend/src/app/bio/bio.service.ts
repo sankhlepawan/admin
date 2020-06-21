@@ -10,7 +10,18 @@ const log = new Logger('CollectionService');
   providedIn: 'root',
 })
 export class BioService {
+  
   constructor(private _httpClient: HttpClient) {}
+  
+  private _selectedBio: BioModel;
+  
+  setSelectedBio(bio: BioModel) {
+    this._selectedBio = bio;
+  }
+
+  getSelectedBio() {
+    return this._selectedBio;
+  }
 
   search(sort: string, order: string, page: number, size: number, q: string): Observable<AllBioApi> {
     log.info('fetching order data...');

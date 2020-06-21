@@ -57,6 +57,15 @@ public class Bio implements Serializable {
 	   @Column(name = "eating_habits")
 	   private EatingHabitsType eatingHabits;
 	   
+	   @Enumerated(EnumType.STRING)
+	   @Column(name = "marital_status")
+	   private MaritalStatusType maritalStatus;
+	   
+	   
+	   @Enumerated(EnumType.STRING)
+	   @Column(name = "cast")
+	   private CastType cast;
+	   
 	   
 	   @Column
 	   private String height;
