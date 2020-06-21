@@ -7,8 +7,8 @@
       <!-- <span>ADD</span> -->
       <span class="example-spacer"></span>
       <button mat-button routerLink="/bio">Cancel</button>
-      <button mat-button [disabled]="addBioForm.invalid || isLoading" (click)="onBioAdd(addBioForm.value)">
-        Add
+      <button mat-button [disabled]="addBioForm.invalid || isLoading" (click)="isEdit ? onBioEdit(addBioForm.value) : onBioAdd(addBioForm.value)">
+        {{ isEdit ? 'UPDATE' : 'ADD' }}
       </button>
     </mat-toolbar-row>
   </mat-toolbar>

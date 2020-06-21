@@ -1,5 +1,6 @@
 package com.mm.admin;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -58,4 +59,10 @@ public class AdminApplication {
 			    .build();
 		return context;
     }
+	
+	@Bean
+	public DozerBeanMapper mapper() throws Exception {
+		DozerBeanMapper mapper = new DozerBeanMapper();
+		return mapper;
+	}
 }

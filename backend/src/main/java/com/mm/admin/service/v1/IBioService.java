@@ -15,4 +15,6 @@ public interface IBioService{
 	
 	public FileUpload uploadUserProfile(MultipartFile file, long userId);
 
+	public Bio update(Bio bio);
+
 }

@@ -1,8 +1,10 @@
 package com.mm.admin.service.v1.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,9 +30,13 @@ public class BioServiceImpl implements IBioService {
 	@Autowired
 	IFileUploadService fileService;
 	
+	@Autowired
+	DozerBeanMapper mapper;
 	
 	@Override
 	public Bio save(Bio u) {
+		u.setCreatedOn(new Date());
+		u.setUpdatedOn(new Date());
 		return repo.save(u);
 	}
 	
@@ -68,6 +74,21 @@ public class BioServiceImpl implements IBioService {
 			throw new NotFoundException("Bio not found with id " + bioId);
 		}
 		return uploadedFile;
+	}
+
+
+
+
+	@Override
+	public Bio update(Bio bio) {
+		if(bio != null && bio.getId() != 0) {
+		Bio ob =  repo.findByBioId(bio.getId());
+		mapper.map(bio,ob);
+		bio.setUpdatedOn(new Date());
+		return repo.save(ob);
+		}else {
+		  throw new NotFoundException("Bio not found");
+		}
 	}
 
 }

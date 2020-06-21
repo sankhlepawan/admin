@@ -13,13 +13,14 @@ import { ActivatedRoute } from '@angular/router';
 export class AddBioComponent implements OnInit {
   constructor(private fb: FormBuilder, private _service: BioService,private route: ActivatedRoute) {
   }
-
+  
+  isEdit:boolean = false;
   ngOnInit(): void {
-    let isEdit = this.route.snapshot.paramMap.get('isEdit');
+    this.isEdit = this.route.snapshot.paramMap.get('isEdit') == "true";
     console.log(this._service);
     let bio = this._service.getSelectedBio();
 
-    if (isEdit) {
+    if (this.isEdit) {
       this._createForm(bio);
     } else {
       this._createForm(undefined);
@@ -41,9 +42,10 @@ export class AddBioComponent implements OnInit {
 
   _createForm(bio: BioModel) {
     this.addBioForm = this.fb.group({
+      id: [(bio && bio.id) || '', { validators: [] }],
       name: [(bio && bio.name) || '', { validators: [Validators.required] }],
       gender: [ (bio && bio.gender) || '', { validators: [Validators.required] }],
-      dob: [ (bio && bio.dob) || '', { validators: [Validators.required] }],
+      dob: [ (bio && new Date(bio.dob)) || '', { validators: [Validators.required] }],
       birthPlace: [ (bio && bio.birthPlace), { validators: [Validators.required] }],
       complextion: [ (bio && bio.complextion), { validators: [Validators.required] }],
       height: [(bio && bio.height) || 0, { validators: [Validators.required, Validators.pattern(numberFloatPattern)] }],
@@ -183,12 +185,20 @@ export class AddBioComponent implements OnInit {
 
   onBioAdd(values: BioModel) {
     this.isLoading = true;
-    console.log(JSON.stringify(values));
-    // values.testMode = TestModeType.MANUAL;
     this._service.addBio(values).subscribe((res) => {
       this.isLoading = false;
       this.addBioForm.markAsPristine();
       this._createForm(undefined);
+    });
+  }
+
+  onBioEdit(values: BioModel) {
+    this.isLoading = true;
+    
+    this._service.editBio(values)
+    .subscribe((res) => {
+      this.isLoading = false;
+      alert("updated successfully !!")
     });
   }
 }

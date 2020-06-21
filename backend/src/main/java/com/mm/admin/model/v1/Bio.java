@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
@@ -65,6 +67,14 @@ public class Bio implements Serializable {
 	   @Enumerated(EnumType.STRING)
 	   @Column(name = "cast")
 	   private CastType cast;
+	   
+	   @Column(name = "create_on")
+	   @Temporal(TemporalType.DATE)
+	   private Date createdOn;
+	   
+	   @Column(name = "updated_on")
+	   @Temporal(TemporalType.DATE)
+	   private Date updatedOn;
 	   
 	   
 	   @Column

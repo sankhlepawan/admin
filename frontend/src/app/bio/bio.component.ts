@@ -70,7 +70,7 @@ export class MyDataSource extends DataSource<BioModel | undefined> {
 
   private _fetchFactPage(): void {
     //for (let i = 0; i < 2; ++i) {
-    this._service.search('id', 'desc', this.lastPage, this.pageSize, '').subscribe((res: AllBioApi) => {
+    this._service.search('updatedOn', 'desc', this.lastPage, this.pageSize, '').subscribe((res: AllBioApi) => {
       this._cachedData = this._cachedData.concat(res.items);
       this._dataStream.next(this._cachedData);
     });
@@ -82,7 +82,7 @@ export class MyDataSource extends DataSource<BioModel | undefined> {
     return Math.floor(i / this.pageSize);
   }
 
-  disconnect(): void {
+  disconnect(): void{
     this._subscription.unsubscribe();
   }
 }

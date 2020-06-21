@@ -34,6 +34,11 @@ public class BioController {
 		return service.search(body);
 	}
 	
+	@PostMapping(value="/update")
+	public Bio update(@RequestBody Bio bio){
+		return service.update(bio);
+	}
+	
 	@PostMapping(value="/uploadProfilePic/{bioId}",consumes = {"multipart/form-data"})
 	public FileUpload uploadProfilePice(@RequestParam("file") MultipartFile file, @PathVariable("bioId") long bioId){
 		 return service.uploadUserProfile(file, bioId);
