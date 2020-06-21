@@ -9,7 +9,7 @@ USER_HOME="/home/ubuntu"
 deploy_ui() {
  cd ${UI_PATH}
  npx yarn build
- rm "${PUBLIC_PATH}/dist"
+ rm -rf "${PUBLIC_PATH}/dist"
  mv ./dist "${PUBLIC_PATH}/"
 }
 
