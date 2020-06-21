@@ -20,22 +20,25 @@ deploy_java() {
 }
 
 deploy_build() {
+    echo "[*] deploying backend..."
     deploy_java;
+    echo "[*] deploying frontend..."
     deploy_ui;
 }
 
 init() {
         last_path=`pwd`;
+        echo "[*] changing dir to ${BUILD_PATH}"
         cd ${BUILD_PATH}
         git pull
-        if [[ "${1}" != "ui" ]]; then
+        if [[ "${1}" == "ui" ]]; then
                 echo "[*] deploying ui..."
                 deploy_ui;
         elif [[ "${1}" == "java" ]]; then
             echo "[*] deploying java..."
-            deploy_java
+            deploy_java;
         else
-           deploy_build
+           deploy_build;
         fi
         pwd "${last_path}"
 }
