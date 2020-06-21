@@ -1,3 +1,8 @@
+.container {
+  text-align: center;
+  padding: 1rem;
+}
+
 .detail-span {
     // width: 130px;
     width: 200px;
@@ -36,5 +41,6 @@
 }
 
 .example-card{
- max-width: 400px;
+  margin-top:16px;
+  max-width: 400px;
 }

@@ -8,7 +8,7 @@ import { SharedModule } from '@shared';
 import { MaterialModule } from '@app/material.module';
 import { BioRoutingModule } from './bio-routing.module';
 import { BioComponent } from './bio.component';
-import { AddBioComponent, UserProfileComponent } from './components';
+import { AddBioComponent, UserProfileComponent, UserProfileDetailComponent } from './components';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -22,6 +22,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     BioRoutingModule,
     ReactiveFormsModule,
   ],
-  declarations: [BioComponent, AddBioComponent, UserProfileComponent],
+  declarations: [BioComponent, AddBioComponent, UserProfileComponent, UserProfileDetailComponent],
 })
 export class BioModule {}

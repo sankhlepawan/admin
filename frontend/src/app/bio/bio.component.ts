@@ -82,7 +82,7 @@ export class MyDataSource extends DataSource<BioModel | undefined> {
     return Math.floor(i / this.pageSize);
   }
 
-  disconnect(): void{
+  disconnect(): void {
     this._subscription.unsubscribe();
   }
 }

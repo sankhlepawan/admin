@@ -55,8 +55,9 @@ export interface BioModel {
   secondaryContactNumber: string;
   siblings: string;
   photo: [string];
-  maritalStatus: string
-  cast: string
+  maritalStatus: string;
+  profilePic: string;
+  cast: string;
 }
 
 export interface AllBioApi {

@@ -11,17 +11,17 @@
   
     <cdk-virtual-scroll-viewport [ngStyle]="{'height': isMobile ? '89vh;' : '89vh;'}" class="example-viewport" itemSize="10">
       <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="12px">
-        <div  fxFlex.xs="0%" fxFlex="25%" fxFlexFill></div>
-        <div  fxFlex="50%" fxFlex.xs="100%">
+        <div  fxFlex.xs="0%"  fxFlex.sm="0%" fxFlex="25%" fxFlexFill></div>
+        <div  fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="100%">
             <div fxLayout="column" fxLayoutAlign="start start"  fxLayoutGap="12px">
               <div fxFlex style="width:100%;" *cdkVirtualFor="let bio of ds">
-                  <app-user-profile [bio]="bio"></app-user-profile>
-              </div>  
-              
+                <app-user-profile *ngIf="bio" [bio]="bio"></app-user-profile>
+                <app-loader *ngIf="!bio" [isLoading]="true" size="1"></app-loader>
+              </div>
             </div>
         </div>
         
-        <div fxFlex="25%" fxFlex.xs="0%" fxFlexFill></div>
+        <div fxFlex="25%" fxFlex.xs="0%" fxFlex.sm="0%" fxFlexFill></div>
       </div>
     </cdk-virtual-scroll-viewport>
     <div class="add-bio-d">
@@ -33,7 +33,7 @@
 
   <!-- <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate"></mat-progress-bar> -->
 
-  <!-- <app-loader [isLoading]="isLoading" size="1"></app-loader> -->
+  
   <!-- <app-no-data [isShow]="!isLoadingResults && data.length == 0"></app-no-data> -->
   <!-- <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 7, 10]"></mat-paginator> -->
 <!-- </div> -->

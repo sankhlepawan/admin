@@ -17,7 +17,6 @@ export class AddBioComponent implements OnInit {
   isEdit:boolean = false;
   ngOnInit(): void {
     this.isEdit = this.route.snapshot.paramMap.get('isEdit') == "true";
-    console.log(this._service);
     let bio = this._service.getSelectedBio();
 
     if (this.isEdit) {

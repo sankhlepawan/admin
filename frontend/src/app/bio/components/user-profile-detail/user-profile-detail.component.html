@@ -1,0 +1,59 @@
+<div class="container">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+         <a mat-icon-button routerLink="/bio">
+            <mat-icon aria-hidden="false" aria-label="Example heart icon">arrow_back</mat-icon>
+        </a>
+        <span class="example-spacer"></span>
+        
+      </mat-toolbar-row>
+    </mat-toolbar>
+<app-loader *ngIf="!bio" [isLoading]="true" size="1">Loading...</app-loader>
+
+<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+  <div fxFlex.xs="0%" fxFlex.sm="0%" fxFlex="50%" fxFlexFill>
+      <mat-card class="example-card" *ngIf="bio">
+            <img
+               mat-card-image
+               height="300"
+               width="calc(100% + 32px);"
+               src="{{ 'http://3.7.120.145/' + bio.profilePic || 'https://via.placeholder.com/150' }}"
+               alt="Photo of a User"
+             />
+           <app-file-upload
+             (complete)="onFileComplete($event, bio)"
+             [target]="getUploadUrl(bio.id)"
+           ></app-file-upload>
+          <div class="u-edit-btn">
+            <button mat-fab color="warn" (click)="onBioEdit(bio)">
+              <mat-icon>edit</mat-icon>
+            </button> 
+          </div>
+           
+         </mat-card>
+  </div>
+  <div fxFlex.xs="0%" fxFlex.sm="0%" fxFlex="50%" fxFlexFill>
+      <mat-list>
+          <mat-list-item>Name: {{ bio.name }}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Birth Place: {{ bio.birthPlace }}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Qualification:
+            <span title="{{ bio.qualification }}" class="detail-span">{{
+              bio.qualification | uppercase
+            }}</span></mat-list-item>
+          <mat-divider *ngIf="bio.fatherName"></mat-divider>
+          <mat-list-item *ngIf="bio.fatherName">Father: {{ bio.fatherName }} ({{bio.fatherOccupation}})</mat-list-item><mat-divider></mat-divider>
+          <mat-divider *ngIf="bio.fatherName"></mat-divider>
+          <mat-list-item >Mother: {{ bio.motherName }} ({{bio.motherOccupation}})</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item *ngIf="bio.working">Salary: {{ bio.salary }}</mat-list-item>
+          <mat-divider *ngIf="bio.working"></mat-divider>
+          <mat-list-item *ngIf="bio.siblings">Siblings: {{ bio.siblings }}</mat-list-item>
+          <mat-divider *ngIf="bio.siblings"></mat-divider>
+          <mat-list-item>Contact: {{ bio.primaryContactNumber }} <span *ngIf="bio.secondaryContactNumber">,{{bio.secondaryContactNumber}}</span></mat-list-item>
+        </mat-list>
+  </div>
+</div>
+
+</div>

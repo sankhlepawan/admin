@@ -6,19 +6,21 @@ import { BioService } from '../../bio.service';
 
 
 @Component({
-    selector: 'app-user-profile',
-    templateUrl: './user-profile.component.html',
-    styleUrls: ['./user-profile.component.scss']
+    selector: 'app-user-profile-detail',
+    templateUrl: './user-profile-detail.component.html',
+    styleUrls: ['./user-profile-detail.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileDetailComponent implements OnInit {
+    
+    bio: BioModel;
     constructor(private media: MediaObserver, private router: Router,private _service: BioService) { }
-
-    ngOnInit(): void { }
-
-    @Input() bio: any;
 
     getUploadUrl(bioId: number) {
         return '/v1/bio/uploadProfilePic/' + bioId;
+    }
+
+    ngOnInit(): void {
+        this.bio = this._service.getSelectedBio();
     }
     
     onFileComplete(event: any, bio: any) {
@@ -35,10 +37,5 @@ export class UserProfileComponent implements OnInit {
     onBioEdit(bio: BioModel) {
         this._service.setSelectedBio(bio);
         this.router.navigate(['bio/add-bio', { isEdit: true }], { skipLocationChange: true });
-    }
-
-    onViewBioDetail(bio: BioModel) {
-        this._service.setSelectedBio(bio);
-        this.router.navigate(['bio/bio-detail', {}], { skipLocationChange: true });
-    }
+      }
 }
