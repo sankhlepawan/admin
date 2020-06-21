@@ -1,7 +1,6 @@
 .detail-span {
-    text-overflow: ellipsis;
-    width: 130px;
-    /* width: 250px; */
+    // width: 130px;
+    width: 200px;
     text-align: start;
     white-space: nowrap;
     overflow: hidden;
@@ -9,7 +8,7 @@
 }
 
 .mat-list-item {
-  height: 35px !important;
+  // height: 35px !important;
   font-size: 17px;
 }
 
@@ -22,6 +21,16 @@
   }
 
   .u-edit-btn {
+    position: absolute;
+    align-items: end;
+    width: 100%;
+    left: 0;
     text-align: end;
-    margin-right: 12px;
+    padding-right: 12px;
+    line-height: 4;
+    z-index: 99;
   }
+
+  .mat-card-image {
+    margin: -16px -16px 0px -16px !important;
+}

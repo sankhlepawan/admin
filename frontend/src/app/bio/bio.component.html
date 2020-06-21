@@ -1,4 +1,4 @@
-<div class="container" [ngStyle]="{'padding': isMobile ? '0.5rem;' : '1rem;'}">
+<!-- <div class="container" [ngStyle]="{'padding': isMobile ? '0.5rem;' : '1rem;'}"> -->
   <!-- <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span>BIOS</span>
@@ -9,21 +9,20 @@
     </mat-toolbar-row>
   </mat-toolbar> -->
   
-    <cdk-virtual-scroll-viewport [ngStyle]="{'height': isMobile ? '100vh;' : '80vh;'}" class="example-viewport" itemSize="100">
-       <mat-grid-list cols="4" rowHeight="200px" gutterSize="5px" *ngIf="!isMobile">
-        <mat-grid-tile *cdkVirtualFor="let bio of ds" [colspan]="isMobile ? 4 : 1" [rowspan]="2">
-          <app-user-profile [bio]="bio"></app-user-profile>
-        </mat-grid-tile>
-      </mat-grid-list>
-
-      <div *ngIf="isMobile">
-          <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="12px">
-              <div fxFlex fxFlexFill *cdkVirtualFor="let bio of ds">
-                <app-user-profile [bio]="bio"></app-user-profile>
-              </div>
-          </div>
+    <cdk-virtual-scroll-viewport [ngStyle]="{'height': isMobile ? '89vh;' : '89vh;'}" class="example-viewport" itemSize="10">
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="12px">
+        <div  fxFlex.xs="0%" fxFlex="25%" fxFlexFill></div>
+        <div  fxFlex="50%" fxFlex.xs="100%">
+            <div fxLayout="column" fxLayoutAlign="start start"  fxLayoutGap="12px">
+              <div fxFlex style="width:100%;" *cdkVirtualFor="let bio of ds">
+                  <app-user-profile [bio]="bio"></app-user-profile>
+              </div>  
+              
+            </div>
+        </div>
+        
+        <div fxFlex="25%" fxFlex.xs="0%" fxFlexFill></div>
       </div>
-      
     </cdk-virtual-scroll-viewport>
     <div class="add-bio-d">
       <a style="margin-right : 14px;" mat-fab color="warn"  routerLink="add-bio">
@@ -37,4 +36,4 @@
   <!-- <app-loader [isLoading]="isLoading" size="1"></app-loader> -->
   <!-- <app-no-data [isShow]="!isLoadingResults && data.length == 0"></app-no-data> -->
   <!-- <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 7, 10]"></mat-paginator> -->
-</div>
+<!-- </div> -->

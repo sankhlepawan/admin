@@ -14,7 +14,7 @@ export enum CastType {
 }
 
 export enum EatingHabitsType {
-  FAIR = 'VEG',
+  VEG = 'VEG',
   NON_VEG = 'NON_VEG',
   BOTH = 'BOTH',
 }
@@ -29,6 +29,7 @@ export interface BioModel {
   name: string;
   gender: GenderType;
   dob: string;
+  manglik: boolean;
   birthPlace: string;
   height: number;
   weight: number;

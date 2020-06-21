@@ -86,6 +86,7 @@ public class Bio implements Serializable {
 	   private String birthTime;
 	   private String salary;
 	   private boolean working;
+	   private boolean manglik;
 	   private boolean petlover;
 	   private String currentWorkLocation;
 	   private String motherName;

@@ -58,7 +58,7 @@ export class AddBioComponent implements OnInit {
       motherName: [ (bio && bio.motherName) ||'', { validators: [Validators.required] }],
       fatherName: [ (bio && bio.fatherName)||'', { validators: [Validators.required] }],
       fatherOccupation: [ (bio && bio.fatherOccupation) ||'', { validators: [Validators.required] }],
-      motherOccupation: [  (bio && bio.motherOccupation) || '', { validators: [Validators.required] }],
+      motherOccupation: [  (bio && bio.motherOccupation) || 'Housewife', { validators: [Validators.required] }],
       gotra: [ (bio && bio.gotra) || '', { validators: [Validators.required] }],
       city: [ (bio && bio.city) || '', { validators: [Validators.required] }],
       country: [ (bio && bio.country) || 'India', { validators: [Validators.required] }],
@@ -68,6 +68,7 @@ export class AddBioComponent implements OnInit {
       secondaryContactNumber: [(bio && bio.secondaryContactNumber) ||'', { validators: [Validators.required, Validators.minLength(10)] }],
       siblings: [(bio && bio.siblings) ||'', { validators: [Validators.required] }],
       working: [ (bio && bio.working) || false, { validators: [Validators.required] }],
+      manglik: [ (bio && bio.manglik) || false, { validators: [Validators.required] }],
       petlover: [ (bio && bio.petlover) || false, { validators: [Validators.required] }],
       eatingHabits: [ (bio && bio.eatingHabits) || 'BOTH', { validators: [Validators.required] }],
       maritalStatus : [(bio && bio.maritalStatus) || 'SINGLE', { validators: [Validators.required] }],
@@ -76,7 +77,11 @@ export class AddBioComponent implements OnInit {
   }
 
   get name() {
-    return this.addBioForm.get('birthPlace');
+    return this.addBioForm.get('name');
+  }
+
+  get manglik() {
+    return this.addBioForm.get('manglik');
   }
 
   get maritalStatus() {
@@ -92,7 +97,7 @@ export class AddBioComponent implements OnInit {
   }
 
   get dob() {
-    return this.addBioForm.get('birthPlace');
+    return this.addBioForm.get('dob');
   }
   get birthPlace() {
     return this.addBioForm.get('birthPlace');
