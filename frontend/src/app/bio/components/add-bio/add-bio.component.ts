@@ -188,6 +188,7 @@ export class AddBioComponent implements OnInit {
     this._service.addBio(values).subscribe((res) => {
       this.isLoading = false;
       this.addBioForm.markAsPristine();
+      this._createForm(undefined);
     });
   }
 }

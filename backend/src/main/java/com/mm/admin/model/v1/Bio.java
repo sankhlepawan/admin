@@ -79,7 +79,7 @@ public class Bio implements Serializable {
 	   private boolean petlover;
 	   private String currentWorkLocation;
 	   private String motherName;
-	   private String fathername;
+	   private String fatherName;
 	   private String fatherOccupation;
 	   private String motherOccupation;
 	   private String city;

@@ -32,7 +32,7 @@
           }}</span></mat-list-item
         >
         <mat-divider></mat-divider>
-        <mat-list-item>Salary: {{ bio.salary }}</mat-list-item>
+        <mat-list-item *ngIf="bio.working">Salary: {{ bio.salary }}</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>Contact: {{ bio.primaryContactNumber }}</mat-list-item>
         <!-- <button color="primary" mat-button>KNOW MORE</button> -->
