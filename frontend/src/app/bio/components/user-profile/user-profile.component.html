@@ -4,7 +4,7 @@
         mat-card-image
         height="300"
         width="calc(100% + 32px);"
-        src="{{ 'http://3.7.120.145/' + bio.profilePic || 'https://via.placeholder.com/150' }}"
+        src="{{ bio.profilePic && bio.profilePic !== null ? 'http://3.7.120.145/' + bio.profilePic : 'https://via.placeholder.com/150' }}"
         alt="Photo of a User"
       />
     <app-file-upload
