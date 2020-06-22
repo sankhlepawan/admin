@@ -69,11 +69,11 @@ public class Bio implements Serializable {
 	   private CastType cast;
 	   
 	   @Column(name = "create_on")
-	   @Temporal(TemporalType.DATE)
+	   @Temporal(TemporalType.TIMESTAMP)
 	   private Date createdOn;
 	   
 	   @Column(name = "updated_on")
-	   @Temporal(TemporalType.DATE)
+	   @Temporal(TemporalType.TIMESTAMP)
 	   private Date updatedOn;
 	   
 	   

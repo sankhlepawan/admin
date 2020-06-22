@@ -185,9 +185,10 @@ public abstract class GenericRepositoryImpl<T> implements IGenericRepository<T>{
 
 		}else {
 
-			if(orderBy != null && orderBy.equalsIgnoreCase("desc")){
+			
+			if(orderType != null && orderType.equalsIgnoreCase("desc")){
 				criteriaQuery.select(root).orderBy(builder.desc(root.get(orderBy)));
-			}else if(orderBy != null && orderBy.equalsIgnoreCase("asc")){
+			}else if(orderType != null && orderType.equalsIgnoreCase("asc")){
 				criteriaQuery.select(root).orderBy(builder.asc(root.get(orderBy)));
 			}
 			TypedQuery<T> typedQuery = getEntityManager().createQuery(criteriaQuery);
