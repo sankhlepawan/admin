@@ -91,22 +91,7 @@
           <app-validation-error [fieldVal]="currentWorkLocation"></app-validation-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
-          <mat-label>Mother Name</mat-label>
-          <input formControlName="motherName" matInput placeholder="Mother Name" />
-          <app-validation-error [fieldVal]="motherName"></app-validation-error>
-        </mat-form-field>
-      </div>
-
-      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
-        
-        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
-          <mat-label>Mother Occupation</mat-label>
-          <input formControlName="motherOccupation" matInput placeholder="Mother Occupation" />
-          <app-validation-error [fieldVal]="motherOccupation"></app-validation-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+       <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
           <mat-label>Father Name</mat-label>
           <input formControlName="fatherName" matInput placeholder="Father Name" />
           <app-validation-error [fieldVal]="fatherName"></app-validation-error>
@@ -117,6 +102,23 @@
           <input formControlName="fatherOccupation" matInput placeholder="Father Occupation" />
           <app-validation-error [fieldVal]="fatherOccupation"></app-validation-error>
         </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+        
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Mother Name</mat-label>
+          <input formControlName="motherName" matInput placeholder="Mother Name" />
+          <app-validation-error [fieldVal]="motherName"></app-validation-error>
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
+          <mat-label>Mother Occupation</mat-label>
+          <input formControlName="motherOccupation" matInput placeholder="Mother Occupation" />
+          <app-validation-error [fieldVal]="motherOccupation"></app-validation-error>
+        </mat-form-field>
+
+        
 
        <mat-form-field class="example-full-width" fxFlex="25%" fxFlexFill>
           <mat-label>Gotra</mat-label>

@@ -66,6 +66,7 @@ public class BioServiceImpl implements IBioService {
 					files.add(uploadedFile);
 				}
 				bio.setProfilePic(uploadedFile.getPath());
+				bio.setUpdatedOn(new Date());
 				repo.update(bio);
 			}catch (Exception e) {
 				log.error("Error inside inside @class BioServiceimpl @method uploadUserProfile => {}", e.getLocalizedMessage());

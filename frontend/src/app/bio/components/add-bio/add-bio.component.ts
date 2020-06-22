@@ -64,7 +64,7 @@ export class AddBioComponent implements OnInit {
       state: [(bio && bio.state) || '', { validators: [Validators.required] }],
       fullAddress: [ (bio && bio.fullAddress) || '', { validators: [Validators.required] }],
       primaryContactNumber: [ (bio && bio.primaryContactNumber) || '', { validators: [Validators.required, Validators.minLength(10)] }],
-      secondaryContactNumber: [(bio && bio.secondaryContactNumber) ||'', { validators: [Validators.required, Validators.minLength(10)] }],
+      secondaryContactNumber: [(bio && bio.secondaryContactNumber) ||'', { validators: [Validators.minLength(10)] }],
       siblings: [(bio && bio.siblings) ||'', { validators: [Validators.required] }],
       working: [ (bio && bio.working) || false, { validators: [Validators.required] }],
       manglik: [ (bio && bio.manglik) || false, { validators: [Validators.required] }],
