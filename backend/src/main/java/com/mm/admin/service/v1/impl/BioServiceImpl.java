@@ -84,6 +84,7 @@ public class BioServiceImpl implements IBioService {
 		if(bio != null && bio.getId() != 0) {
 		Bio ob =  repo.findByBioId(bio.getId());
 		mapper.map(bio,ob);
+		bio.setProfilePic(ob.getProfilePic());
 		bio.setUpdatedOn(new Date());
 		return repo.save(ob);
 		}else {
