@@ -101,7 +101,6 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public UserProfileDTO getUserProfile(String token) {
 		String username = jwtTokenUtil.getUsernameFromToken(token);
-		System.out.println("username is==" + username);
 		User u = getUserByUsername(username);
 		UserProfileDTO user = new UserProfileDTO();
 		beanMapper.map(u, user);
