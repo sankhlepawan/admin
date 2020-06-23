@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.google.maps.GeoApiContext;
 import com.twilio.Twilio;
@@ -23,7 +24,7 @@ public class AdminApplication {
 	 
 	 
 	 public static void main(String[] args) {
-			SpringApplication.run(AdminApplication.class, args);
+		    SpringApplication.run(AdminApplication.class, args);
 	 }
 	 
 	

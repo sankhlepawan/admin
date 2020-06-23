@@ -41,8 +41,14 @@ export class AuthenticationService {
         return data;
       }), catchError( error => {
            return throwError( error && error.error && error.error.message || 'Server error' );
-      })
-   )
+      }));
+
+    // const data = {
+    //   username: context.username,
+    //   token:'eyJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOiJST0xFX0FETUlOIiwic3ViIjoiaHdRVTdzbTcvbmNFVEhhcE5oU3lGdz09IiwiaWF0IjoxNTkyOTEzODI3LCJleHAiOjE1OTI5MTc0Mjd9.YOvEkmzz6olazPPoAc8Y7inWdQ4v08SFFZXclR76PRQ',
+    // };
+    // this.credentialsService.setCredentials(data, context.remember);
+    // return of(data);
   }
 
 
