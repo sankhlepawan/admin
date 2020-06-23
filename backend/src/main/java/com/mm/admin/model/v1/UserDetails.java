@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,25 +13,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
-@Table(name = "wb_role")
-public class Role implements Serializable{
-	 
+@Table(name = "wb_user_details")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserDetails implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
 	
-	
-	@Column(name="rolename")
-	@Enumerated(EnumType.STRING)
-	private RoleTypes roleName;
-	
-	@Column(name="description")
-	private String description;
+	@Column
+	private boolean accountNonExpired = true;
+	private boolean accountNonLocked = true;
+	private boolean credentialsNonExpired = false;
+	private boolean enabled = true;
 	
 }

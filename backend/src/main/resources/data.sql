@@ -11,6 +11,12 @@ insert into wb_sub_category(id,name,active,description,category_id,menu_order) V
 
 
 insert into wb_role(id,rolename,description) values(1,'ROLE_SUPPLIER','role for normal user');
-insert into wb_role(id,rolename,description) values(2,'ROLE_USER','this role is for supplier'); 
+insert into wb_role(id,rolename,description) values(2,'ROLE_USER','this role is for supplier');
+insert into wb_role(id,rolename,description) values(1,'ROLE_ADMIN','role for normal admin');
+
+
+
+ update wb_user set username="psankhle";
+ update wb_user set password="$2a$10$o7aWBpe.5NjOucLjoh1ed.Bb8MB6l9tEoJTH7fWib/yV0GByRzx6C";
 
 */

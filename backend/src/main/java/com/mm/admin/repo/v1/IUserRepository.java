@@ -7,6 +7,7 @@ public interface IUserRepository extends IGenericRepository<User>{
 	public User findByWhatsappNumber(String number);
 	
 	public User enableUser(long userId, boolean enable);
+	public User findByUsername(String username);
 	
 	
 }

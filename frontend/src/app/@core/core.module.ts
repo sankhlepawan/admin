@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouteReusableStrategy } from './route-reusable-strategy';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
+import { TokenInterceptor } from './http/jwt-token.interceptor';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
@@ -21,6 +22,12 @@ import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
       useClass: ErrorHandlerInterceptor,
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+    
     {
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy,

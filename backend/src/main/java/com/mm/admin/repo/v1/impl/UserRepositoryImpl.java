@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mm.admin.dto.SearchQueryRequestDto;
 import com.mm.admin.dto.SearchResponseDTO;
+import com.mm.admin.model.v1.Bio;
 import com.mm.admin.model.v1.User;
 import com.mm.admin.repo.v1.IUserRepository;
 
@@ -55,6 +56,14 @@ public class UserRepositoryImpl extends GenericRepositoryImpl<User> implements I
 	public User findByWhatsappNumber(String whatsappNumber) {
 		return (User) getEntityManager().createNamedQuery("findByWhatsappNumber")
 		.setParameter("whatsappNumber", whatsappNumber).getSingleResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public User findByUsername(String username) {
+		return (User) getEntityManager().createNamedQuery("findByUsername")
+				.setParameter("username", username).getSingleResult();
+		
 	}
 
 	@Override

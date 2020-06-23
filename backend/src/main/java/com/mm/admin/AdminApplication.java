@@ -20,8 +20,12 @@ public class AdminApplication {
 	 
 	 @Value("${GOOGLE_APIKEY}")
 	 String apiKey;
-
-	
+	 
+	 
+	 public static void main(String[] args) {
+			SpringApplication.run(AdminApplication.class, args);
+	 }
+	 
 	
 	static {
 		try {
@@ -29,11 +33,6 @@ public class AdminApplication {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	
-	public static void main(String[] args) {
-		SpringApplication.run(AdminApplication.class, args);
 	}
 	
 	

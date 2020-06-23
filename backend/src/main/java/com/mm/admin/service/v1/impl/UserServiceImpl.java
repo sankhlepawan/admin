@@ -3,6 +3,7 @@ package com.mm.admin.service.v1.impl;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mm.admin.dto.ResponseDto;
@@ -18,10 +19,21 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	IUserRepository repo;
 	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	
 	@Override
 	public User save(User u) {
+		u.setUsername(u.getFirstName().toLowerCase());
+		u = setDefaultPassword(u);
 		return repo.save(u);
+	}
+
+
+	private User setDefaultPassword(User u) {
+		u.setPassword(bCryptPasswordEncoder.encode("P@wan#1991"));
+		return u;
 	}
 
 
@@ -62,6 +74,12 @@ public class UserServiceImpl implements IUserService {
 			return false;
 		}
 		return true;
+	}
+
+
+	@Override
+	public User getUserByUsername(String username) {
+		return repo.findByUsername(username);
 	}
 
 }

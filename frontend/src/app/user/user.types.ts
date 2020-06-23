@@ -52,9 +52,11 @@ export interface userFilter {
 export const dbRoleTypes = {
   Supplier: 'ROLE_SUPPLIER',
   User: 'ROLE_USER',
+  Admin: 'ROLE_ADMIN',
 };
 
 export const UIRoleTypes = {
   ROLE_SUPPLIER: 'Supplier',
   ROLE_USER: 'User',
+  ROLE_ADMIN: 'Admin'
 };

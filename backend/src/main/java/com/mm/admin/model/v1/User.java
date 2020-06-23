@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @NamedQueries({
 	@NamedQuery(name="findByWhatsappNumber",query="select u from User u where u.whatsappNumber=:whatsappNumber"),
 	@NamedQuery(name="enableUser",query="update User u set u.enable=:enable where u.id=:userId"),
-//	@NamedQuery(name="deleteUser",query="update User u set u.deleted=:deleted where u.id=:id"),
+	@NamedQuery(name="findByUsername",query="select u from User u where u.username=:username"),
 })
 
 @Data
@@ -51,6 +51,12 @@ public class User implements Serializable{
    @Column(name = "last_name")
    private String lastName;
    
+   @Column(name = "username")
+   private String username;
+   
+   @Column(name = "password")
+   private String password;
+   
    @Column(name = "isWhatsappNumber")
    private boolean whatsappNumber = false;
    
@@ -64,6 +70,10 @@ public class User implements Serializable{
    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
    @JoinColumn(name = "preference_id")
    private UserPreference userPreference;
+   
+   @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+   @JoinColumn(name = "detail_id")
+   private UserDetails details;
    
    @Column(name = "enable")
    private boolean enable = false;

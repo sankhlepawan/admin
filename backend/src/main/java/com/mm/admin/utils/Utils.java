@@ -1,8 +1,15 @@
 package com.mm.admin.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Utils {
 
 	
@@ -11,7 +18,9 @@ public class Utils {
 	 public static float MIN_LONGITUDE = Float.valueOf("-180.0000");
 	 public static float MAX_LONGITUDE = Float.valueOf("180.0000");
 	 public static final SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-	  
+	 public static final String initVector = "encryptionIntVec";
+	 public static final String ENCY_KEY = "a$sEncrypt!0nKey"; 
+	 private final static String  UTF_8 = "UTF-8";
 	  
 	private static double distanceBetweenPoints(double lat1, double lon1, double lat2, double lon2, String unit) {
 		
@@ -57,5 +66,41 @@ public class Utils {
 	
 	public static double calculateItemTotal(int qwt, double d) {
 		return  qwt * d;
+	}
+	
+	public static String encrypt(String value) {
+		try {
+			IvParameterSpec iv = new IvParameterSpec(initVector.getBytes(UTF_8));
+			SecretKeySpec skeySpec = new SecretKeySpec(ENCY_KEY.getBytes(UTF_8), "AES");
+
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+
+			byte[] encrypted = cipher.doFinal(value.getBytes());
+			return Base64.getEncoder().encodeToString(encrypted);
+		} catch (Exception e) {
+			log.error("Error inside @calss BiomUtil @method encrypt ==>", e.getLocalizedMessage());
+		}
+		return null;
+	}
+
+	public static String decrypt(String encrypted) {
+		try {
+			
+			System.out.println("going to decode string..==========" + encrypted);
+			 
+			IvParameterSpec iv = new IvParameterSpec(initVector.getBytes(UTF_8));
+			SecretKeySpec skeySpec = new SecretKeySpec(ENCY_KEY.getBytes(UTF_8), "AES");
+
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+			byte[] original = cipher.doFinal(Base64.getDecoder().decode(encrypted));
+
+			return new String(original);
+		} catch (Exception e) {
+			log.error("Error inside @calss BiomUtil @method decrypt ==>", e.getLocalizedMessage());
+		}
+
+		return null;
 	}
 }

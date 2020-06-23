@@ -41,6 +41,10 @@ export class CredentialsService {
     return this._credentials;
   }
 
+  getToken(): string | null {
+    return this._credentials.token;
+  }
+
   /**
    * Sets the user credentials.
    * The credentials may be persisted across sessions by setting the `remember` parameter to true.

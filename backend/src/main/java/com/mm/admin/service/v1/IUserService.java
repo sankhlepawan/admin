@@ -18,4 +18,6 @@ public interface IUserService{
 	public boolean delete(User user);
 
 	public ResponseDto<User> enable(User user);
+
+	public User getUserByUsername(String username);
 }

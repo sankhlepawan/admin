@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import { Credentials, CredentialsService } from './credentials.service';
+import { HttpClient } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
 
 export interface LoginContext {
   username: string;
@@ -17,7 +19,8 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService) {}
+  
+  constructor(private credentialsService: CredentialsService,private _http: HttpClient) {}
 
   /**
    * Authenticates the user.
@@ -26,12 +29,19 @@ export class AuthenticationService {
    */
   login(context: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
-    const data = {
-      username: context.username,
-      token: '123456',
-    };
-    this.credentialsService.setCredentials(data, context.remember);
-    return of(data);
+    return this._http.post<Credentials>('/authenticate', {username:context.username,password:context.password})
+    .pipe(
+      map((res: Credentials) => {
+        const data = {
+          username: context.username,
+          token: res.token,
+        };
+        this.credentialsService.setCredentials(data, context.remember);
+        return data;
+      }), catchError( error => {
+           return throwError( error && error.error && error.error.message || 'Server error' );
+      })
+   )
   }
 
   /**
