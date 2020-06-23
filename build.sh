@@ -16,14 +16,16 @@ deploy_ui() {
 deploy_java() {
   cd "${JAVA_PATH}"
   mvn clean package
+  killall -9 java
   nohup java -Dspring.profiles.active=prod -jar target/whatsappbot-0.0.1-SNAPSHOT.jar >> "${USER_HOME}/server.log" &
+tail -f ${USER_HOME}/server.log
 }
 
 deploy_build() {
-    echo "[*] deploying backend..."
-    deploy_java;
     echo "[*] deploying frontend..."
     deploy_ui;
+    echo "[*] deploying backend..."
+    deploy_java;
 }
 
 init() {
