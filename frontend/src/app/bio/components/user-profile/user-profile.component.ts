@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
     ngOnInit(): void { }
 
     @Input() bio: any;
+    @Input() isAdmin: boolean; 
 
     getUploadUrl(bioId: number) {
         return '/v1/bio/uploadProfilePic/' + bioId;
@@ -34,11 +35,11 @@ export class UserProfileComponent implements OnInit {
 
     onBioEdit(bio: BioModel) {
         this._service.setSelectedBio(bio);
-        this.router.navigate(['bio/add-bio', { isEdit: true }], { skipLocationChange: true });
+        this.router.navigate(['bio/add-bio', { isEdit: this.isAdmin }], { skipLocationChange: true });
     }
 
     onViewBioDetail(bio: BioModel) {
         this._service.setSelectedBio(bio);
-        this.router.navigate(['bio/bio-detail', {}], { skipLocationChange: true });
+        this.router.navigate(['bio/bio-detail', { isEdit: this.isAdmin }], { skipLocationChange: true });
     }
 }

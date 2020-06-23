@@ -8,11 +8,12 @@
         alt="Photo of a User"
       />
     <app-file-upload
+      *ngIf="isAdmin"
       (complete)="onFileComplete($event, bio)"
       [target]="getUploadUrl(bio.id)"
     ></app-file-upload>
-    <div class="u-edit-btn">
-      <button mat-icon-button color="warn" (click)="onBioEdit(bio)">
+    <div class="u-edit-btn" >
+      <button mat-icon-button *ngIf="isAdmin" color="warn" (click)="onBioEdit(bio)">
         <mat-icon>edit</mat-icon>
       </button>
       <a style="margin-right : 14px;" mat-mini-fab color="warn"  (click)="onViewBioDetail(bio)">

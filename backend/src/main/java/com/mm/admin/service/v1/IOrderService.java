@@ -11,7 +11,7 @@ public interface IOrderService {
 
 	public String processAndPlaceOrderByWhatsapp(RedisTemplateInput userTemplate);
 
-	public ResponseDto<Order> findAll();
+	public ResponseDto findAll();
 
 	Order findById(Long orderId);
 

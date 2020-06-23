@@ -3,6 +3,7 @@ import { MediaObserver } from '@angular/flex-layout';
 import { Router } from '@angular/router';
 import { BioModel } from '../../bio.types';
 import { BioService } from '../../bio.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,14 +14,22 @@ import { BioService } from '../../bio.service';
 export class UserProfileDetailComponent implements OnInit {
     
     bio: BioModel;
-    constructor(private media: MediaObserver, private router: Router,private _service: BioService) { }
+    isEdit = false;
+    constructor(
+        private media: MediaObserver,
+        private router: Router,
+        private _service: BioService,
+        private route: ActivatedRoute
+        ) { }
 
     getUploadUrl(bioId: number) {
         return '/v1/bio/uploadProfilePic/' + bioId;
     }
 
     ngOnInit(): void {
+        this.isEdit = this.route.snapshot.paramMap.get('isEdit') == "true";
         this.bio = this._service.getSelectedBio();
+
     }
     
     onFileComplete(event: any, bio: any) {

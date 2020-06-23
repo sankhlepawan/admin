@@ -9,7 +9,7 @@ public interface IItemService {
 
 	public double calculatePriceByQwt(int qwt, String name);
 	public Item create(Item item);
-	public ResponseDto<Item> findAll();
+	public ResponseDto findAll();
 	SearchResponseDTO<Item> search(SearchQueryRequestDto searchQuery);
 	
 }

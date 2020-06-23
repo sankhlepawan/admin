@@ -22,8 +22,9 @@ public class OrderController {
 	IOrderService service; 
 	
 	@GetMapping(value="/findAll")
-	public ResponseDto<Order> findAll() {
-		return service.findAll();
+	public ResponseDto findAll() {
+		//return service.findAll();
+		return null;
 	}
 	
 	@GetMapping(value="/detailById/{orderId}")

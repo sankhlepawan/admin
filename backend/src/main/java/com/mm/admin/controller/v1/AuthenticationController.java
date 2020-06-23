@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mm.admin.dto.JwtRequestDTO;
 import com.mm.admin.dto.JwtResponseDTO;
-import com.mm.admin.security.TokenProvider;
+import com.mm.admin.security.JwtTokenUtil;
 import com.mm.admin.service.v1.impl.JwtUserDetailsService;
 
 @RestController
@@ -26,7 +26,7 @@ public class AuthenticationController {
 	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	private TokenProvider jwtTokenUtil;
+	private JwtTokenUtil jwtTokenUtil;
 
 	@Autowired
 	private JwtUserDetailsService userDetailsService;

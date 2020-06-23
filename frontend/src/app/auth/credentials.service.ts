@@ -33,6 +33,7 @@ export class CredentialsService {
     return !!this.credentials;
   }
 
+  
   /**
    * Gets the user credentials.
    * @return The user credentials or null if the user is not authenticated.

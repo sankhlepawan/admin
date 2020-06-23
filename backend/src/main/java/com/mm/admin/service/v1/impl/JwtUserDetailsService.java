@@ -23,8 +23,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
-			com.mm.admin.model.v1.User user = userService.getUserByUsername("psankhle");
-			System.out.println("user is=======" + user);
+			com.mm.admin.model.v1.User user = userService.getUserByUsername(username);
 			final Collection<? extends GrantedAuthority> authorities =
 					user.getRoles().stream()
 							.map(r -> r.getRoleName().toString())

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { merge, Observable, of as observableOf } from 'rxjs';
-import { UserModel, UserApi, RoleApi, RoleType } from './user.types';
+import { Observable, of as observableOf, throwError,BehaviorSubject } from 'rxjs';
+import { UserModel, UserApi, RoleApi, RolesTypes } from './user.types';
 import { defaultPagination } from '@shared/constants';
-
 import { Logger } from '@core/logger.service';
+import { map, catchError } from 'rxjs/operators';
 
 const log = new Logger('OrderService');
 
@@ -12,7 +12,17 @@ const log = new Logger('OrderService');
   providedIn: 'root',
 })
 export class UserService {
+  
   selectUser: UserModel;
+  _profile: UserModel;
+  userRoleSource = new BehaviorSubject(false);
+  isAdmin = this.userRoleSource.asObservable();
+
+  rolesSource = new BehaviorSubject([]);
+  roles = this.rolesSource.asObservable();
+
+  rolesTypes = RolesTypes;
+  
   constructor(private _httpClient: HttpClient) {}
 
   setSelectedUser(u: UserModel) {
@@ -71,4 +81,29 @@ export class UserService {
     };
     return this._httpClient.post<RoleApi>(url, form);
   }
+
+  _getProfile() {
+    this.rolesSource.next([]);
+    return this._httpClient.post<any>('/v1/user/profile','')
+    .pipe(
+      map((res: any) => {
+        this._profile = res;
+        let roles = this._profile.roles.map(r => r.roleName);
+        if(this.roles) {
+           this.userRoleSource.next(roles.indexOf('ROLE_ADMIN') !== -1)
+           this.rolesSource.next(roles);
+        }
+        return res;
+      }), catchError( error => {
+           return throwError( error && error.error && error.error.message || 'Server error' );
+      })
+   ).subscribe(res=> log.info('logged in username is =>', res.username))
+  }
+
+  // get roles(): string[] {
+  //   if(this._profile) {
+  //     return this._profile.roles.map(r => r.roleName);
+  //   }
+  //   return null;
+  // }
 }

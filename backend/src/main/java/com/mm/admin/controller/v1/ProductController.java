@@ -29,8 +29,9 @@ public class ProductController {
   	
 
   	@GetMapping(value="/findAll")
-	public ResponseDto<Item> findAll(){
-		return service.findAll();
+	public ResponseDto findAll(){
+		//return service.findAll();
+  		return null;
 	}
   	
   	@PostMapping(value="/search")

@@ -60,6 +60,9 @@ public class OrderServiceImpl implements IOrderService{
 	@Autowired
 	ISubscriptionRepository subscriptionRepo;
 	
+	@Autowired
+	ResponseDto resDto;
+	
 	
 	@Override
 	public Order create(User user) {
@@ -253,9 +256,12 @@ public class OrderServiceImpl implements IOrderService{
 	}
 
 	@Override
-	public ResponseDto<Order> findAll() {
+	public ResponseDto findAll() {
 		// return orderRepo.findAll();
-		return new ResponseDto<Order>(orderRepo.findAll(), orderRepo.count());
+		resDto.items(orderRepo.findAll());
+		resDto.count(orderRepo.count());
+		return resDto.build();
+		//return new ResponseDto<Order>(, );
 	}
 
 	@Override

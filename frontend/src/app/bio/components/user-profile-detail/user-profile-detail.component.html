@@ -23,8 +23,9 @@
            <app-file-upload
              (complete)="onFileComplete($event, bio)"
              [target]="getUploadUrl(bio.id)"
+             *ngIf="isEdit"
            ></app-file-upload>
-          <div class="u-edit-btn">
+          <div class="u-edit-btn" *ngIf="isEdit">
             <button mat-fab color="warn" (click)="onBioEdit(bio)">
               <mat-icon>edit</mat-icon>
             </button> 

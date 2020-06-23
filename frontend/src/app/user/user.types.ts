@@ -60,3 +60,9 @@ export const UIRoleTypes = {
   ROLE_USER: 'User',
   ROLE_ADMIN: 'Admin'
 };
+
+export const RolesTypes = {
+  ROLE_SUPPLIER: 'ROLE_SUPPLIER',
+  ROLE_USER: 'ROLE_USER',
+  ROLE_ADMIN: 'ROLE_ADMIN',
+};

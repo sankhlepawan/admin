@@ -20,6 +20,7 @@ export interface LoginContext {
 })
 export class AuthenticationService {
   
+  
   constructor(private credentialsService: CredentialsService,private _http: HttpClient) {}
 
   /**
@@ -43,6 +44,7 @@ export class AuthenticationService {
       })
    )
   }
+
 
   /**
    * Logs out the user and clear credentials.

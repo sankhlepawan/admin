@@ -22,6 +22,9 @@ public class ItemServiceImpl implements IItemService{
 	@Autowired
 	IItemRepository repo;
 	
+	@Autowired
+	ResponseDto resDto;
+	
 	@Override
 	public double calculatePriceByQwt(int qwt, String name) {
 		List<Item> item = repo.findBySubCategoriesAndAvailableAndQwt(name, true, 0);
@@ -37,8 +40,11 @@ public class ItemServiceImpl implements IItemService{
 	}
 
 	@Override
-	public ResponseDto<Item> findAll() {
-		return new ResponseDto<Item>(repo.findAll(), repo.count());
+	public ResponseDto findAll() {
+		resDto.data(repo.findAll());
+		resDto.count( repo.count());
+		return resDto.build();
+		
 	}
 	
 	@Override

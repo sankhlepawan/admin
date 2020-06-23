@@ -2,6 +2,7 @@ package com.mm.admin.service.v1.impl;
 
 import java.util.Arrays;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,8 +10,10 @@ import org.springframework.stereotype.Service;
 import com.mm.admin.dto.ResponseDto;
 import com.mm.admin.dto.SearchQueryRequestDto;
 import com.mm.admin.dto.SearchResponseDTO;
+import com.mm.admin.dto.UserProfileDTO;
 import com.mm.admin.model.v1.User;
 import com.mm.admin.repo.v1.IUserRepository;
+import com.mm.admin.security.JwtTokenUtil;
 import com.mm.admin.service.v1.IUserService;
 
 @Service
@@ -19,9 +22,18 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	IUserRepository repo;
 	
+	
+	@Autowired
+	ResponseDto resDto;
+	
+	@Autowired
+	DozerBeanMapper beanMapper;
+	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
 	
 	@Override
 	public User save(User u) {
@@ -44,9 +56,10 @@ public class UserServiceImpl implements IUserService {
 
 
 	@Override
-	public ResponseDto<User> findAll() {
-		// return repo.findAll();
-		return new ResponseDto<User>(repo.findAll(),0);
+	public ResponseDto findAll() {
+		resDto.data(Arrays.asList(repo.findAll()));
+		resDto.count(1);
+		return resDto.build();
 		
 		
 	}
@@ -58,8 +71,10 @@ public class UserServiceImpl implements IUserService {
 
 
 	@Override
-	public ResponseDto<User> enable(User user) {
-		return new ResponseDto(Arrays.asList(repo.enableUser(user.getId(), user.isEnable())),1);
+	public ResponseDto enable(User user) {
+		resDto.data(Arrays.asList(repo.enableUser(user.getId(), user.isEnable())));
+		resDto.count(1);
+		return resDto.build();
 	}
 
 
@@ -82,4 +97,15 @@ public class UserServiceImpl implements IUserService {
 		return repo.findByUsername(username);
 	}
 
+
+	@Override
+	public UserProfileDTO getUserProfile(String token) {
+		String username = jwtTokenUtil.getUsernameFromToken(token);
+		System.out.println("username is==" + username);
+		User u = getUserByUsername(username);
+		UserProfileDTO user = new UserProfileDTO();
+		beanMapper.map(u, user);
+		return user;
+		
+	}
 }

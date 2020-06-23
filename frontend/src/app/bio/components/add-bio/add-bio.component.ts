@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-bio.component.scss'],
 })
 export class AddBioComponent implements OnInit {
-  constructor(private fb: FormBuilder, private _service: BioService,private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private _service: BioService, private route: ActivatedRoute) {
   }
   
   isEdit:boolean = false;

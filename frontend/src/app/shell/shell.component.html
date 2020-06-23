@@ -27,8 +27,9 @@
         <app-language-selector icon="true"></app-language-selector>
       </mat-toolbar>
       <nav>
+        <app-loader class="menu-loading" [isLoading]="true" *ngIf="menus && menus.length == 0"></app-loader>
         <mat-list>
-          <mat-divider></mat-divider>
+          
           <ng-container *ngFor="let menu of menus; let index = index">
             <a
               mat-list-item

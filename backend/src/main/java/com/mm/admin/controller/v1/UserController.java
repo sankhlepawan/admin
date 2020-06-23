@@ -3,15 +3,16 @@ package com.mm.admin.controller.v1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mm.admin.dto.ResponseDto;
 import com.mm.admin.dto.SearchQueryRequestDto;
 import com.mm.admin.dto.SearchResponseDTO;
+import com.mm.admin.dto.UserProfileDTO;
 import com.mm.admin.model.v1.User;
 import com.mm.admin.service.v1.IUserService;
 
@@ -29,12 +30,12 @@ public class UserController {
 	}
 	
 	@GetMapping(value="/findAll")
-	public ResponseDto<User> findById(){
+	public ResponseDto findById(){
 		return service.findAll() ;
 	}
 	
 	@PostMapping(value="/enable")
-	public ResponseDto<User> enable(@RequestBody User user){
+	public ResponseDto enable(@RequestBody User user){
 		return service.enable(user) ;
 	}
 	
@@ -46,6 +47,12 @@ public class UserController {
 	@PostMapping(value="/search")
 	public SearchResponseDTO<User> search(@RequestBody SearchQueryRequestDto body){
 		return service.search(body);
+	}
+	
+	@PostMapping(value="/profile")
+	public UserProfileDTO profile(@RequestHeader (value = "Authorization", required = true) String token) {
+		return service.getUserProfile(token);
+		
 	}
 	
 	

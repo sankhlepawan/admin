@@ -2,40 +2,54 @@ package com.mm.admin.dto;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Data
+
 @JsonInclude(Include. NON_NULL)
-public class ResponseDto<T> {
+@Component
+@ToString
+@NoArgsConstructor
+public class ResponseDto {
 	
-	Iterable<T> items;
-	List<T> data;
+	Iterable items;
+	List data;
 	long count;
 	String status;
 	
-	ResponseDto(Iterable<T> obj1) 
-    { 
-        this.items = obj1; 
-    }
+	public ResponseDto items(Iterable items){
+		this.items = items;
+		return this;
+	}
 	
-	ResponseDto(List<T> obj1) 
-    { 
-        this.data = obj1; 
-    }
+	public ResponseDto status(String status){
+		this.status = status;
+		return this;
+	}
 	
-	public ResponseDto(Iterable<T> obj1, long l) 
-    { 
-        this.items = obj1; 
-        this.count = l;
-    }
+	public ResponseDto count(long count){
+		this.count = count;
+		return this;
+	}
 	
-	public ResponseDto(List<T> obj1, long count) 
-    { 
-        this.items = obj1; 
-        this.count = count;
-    }
+	public ResponseDto data(List data){
+		this.data = data;
+		return this;
+	}
+	
+	
+	public ResponseDto build() {
+		ResponseDto res = new ResponseDto();
+		res.items = this.items;
+		res.data = this.data;
+		res.count = this.count;
+		res.status = this.status;
+		return res;
+	}
 
 }	

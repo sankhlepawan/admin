@@ -3,8 +3,9 @@ import { BioService } from './bio.service';
 import { BioModel, AllBioApi } from './bio.types';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
-import { ChangeDetectionStrategy, Component, ViewChild, AfterViewInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy , AfterViewInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { UserService } from '@app/user/user.service';
 
 
 @Component({
@@ -20,18 +21,33 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
     ]),
   ],
 })
-export class BioComponent implements AfterViewInit {
+export class BioComponent implements AfterViewInit,OnDestroy {
   data: any;
   ds: any;
+  $isAdmin:boolean;
+  _subscription:Subscription;
 
-  constructor(private _service: BioService, private media: MediaObserver) {}
+  constructor(
+    private _service: BioService,
+    private media: MediaObserver,
+    private _userService: UserService) {
+      
+       
+    }
 
   _getData() {
     this.ds = new MyDataSource(this._service);
+    this._subscription = this._userService.isAdmin.subscribe(res => {
+      this.$isAdmin = res;
+    });
   }
 
   ngAfterViewInit() {
     this._getData();
+  }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
   }
 
   get isMobile(): boolean {

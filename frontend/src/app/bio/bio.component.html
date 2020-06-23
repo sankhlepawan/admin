@@ -15,7 +15,7 @@
         <div  fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="100%">
             <div fxLayout="column" fxLayoutAlign="start start"  fxLayoutGap="12px">
               <div fxFlex style="width:100%;" *cdkVirtualFor="let bio of ds">
-                <app-user-profile *ngIf="bio" [bio]="bio"></app-user-profile>
+                <app-user-profile [isAdmin]="$isAdmin" *ngIf="bio" [bio]="bio"></app-user-profile>
                 <app-loader *ngIf="!bio" [isLoading]="true" size="1"></app-loader>
               </div>
             </div>
@@ -24,7 +24,7 @@
         <div fxFlex="25%" fxFlex.xs="0%" fxFlex.sm="0%" fxFlexFill></div>
       </div>
     </cdk-virtual-scroll-viewport>
-    <div class="add-bio-d">
+    <div class="add-bio-d" *ngIf="$isAdmin">
       <a style="margin-right : 14px;" mat-fab color="warn"  routerLink="add-bio">
         <mat-icon aria-hidden="false" aria-label="Example heart icon">add</mat-icon>
       </a>

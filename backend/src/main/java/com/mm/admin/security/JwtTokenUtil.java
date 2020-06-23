@@ -32,7 +32,7 @@ import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 
 @Component
-public class TokenProvider implements Serializable {
+public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -50,6 +50,7 @@ public class TokenProvider implements Serializable {
     IUserService userService;
 
 	public String getUsernameFromToken(String token) {
+		token = token.replace(TOKEN_PREFIX,"");
 		String user = getClaimFromToken(token, Claims::getSubject);
 		return user != null ? Utils.decrypt(user) : user;
    }

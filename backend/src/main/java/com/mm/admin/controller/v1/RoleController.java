@@ -23,8 +23,9 @@ public class RoleController {
 	IRoleService service;
 	
 	@GetMapping("/findAll")
-	public ResponseDto<Role> findAll() {
-		return new ResponseDto<Role>(service.findAll(),200);
+	public ResponseDto findAll() {
+		// return new ResponseDto<Role>(service.findAll(),200);
+		return null;
 	}
 	
 	@PostMapping("/save")

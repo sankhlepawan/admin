@@ -12,7 +12,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private auth: CredentialsService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if(request.url.indexOf('/authenticate') == -1){
+    if(request.url.indexOf('/authenticate') == -1) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${this.auth.getToken()}`
